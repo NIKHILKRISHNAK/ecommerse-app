@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page</title>
+</head>
+
+<body>
+    {% if request.user.is_authenticated %}
+    <a href="/logout">logout</a> <h4>Hey {{request.user}}</h4>
+    {% else %}
+    <a href="/login/">Login</a>
+    {% endif %}
+    <h1>Landing page</h1>
+    {% for item in items %}
+    <a href="/user/details/{{item.id}}">{{item}}</a> <br>
+    {% endfor %}
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registe User</title>
+</head>
+<body>
+    <h1>Register User</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h4>Name:{{form.name}}</h4>
+        <h4>Phone No:{{form.phone_number}}</h4>
+        <h4>Address:{{form.address}}</h4>
+        <h4>Email:{{form.email}}</h4>
+        <h4>Password:{{form.password}}</h4>
+        <input type="submit" value="Sign Up">
+    </form>
+</body>
+</html>
