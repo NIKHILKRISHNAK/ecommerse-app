@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now</title>
+</head>
+
+<body>
+    <h1>Buy Now 2</h1>
+
+    <a href="/">Back</a>
+    <a href="/user/cart/">My cart</a>
+    <img src="/uploads/{{items.image}}" alt="">
+    <h1>{{items.name}}</h1>
+    <h2>{{items.description}}</h2>
+    <h2>₹ {{items.price}}</h2>
+    <h4>Available stock:{{items.count}}</h4>
+    <form method="POST">
+        {% csrf_token %}
+
+        <button>Place Order</button>
+    </form>
+</body>
+
+</html>

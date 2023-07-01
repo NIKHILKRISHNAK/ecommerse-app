@@ -29,9 +29,27 @@ def UserRegister(request):
 
 def details(request,id):
     item=Items.objects.get(id=id)
-    if request.POST:
-        items=item.name
-        cart=Cart(name=request.user,item=items)
-        cart.save()
-        print('Added to cart')
+    items=item.name
+    try:
+        check=Cart.objects.get(item=items,name=request.user)
+        message="Item is already added to the Cart"
+        return render(request,'user/details.html',{'item':item,'message':message})
+    except:
+        if request.POST:
+            cart=Cart(name=request.user,item=items)
+            cart.save()
     return render(request,'user/details.html',{'item':item})
+
+def show_cart(request):
+    carts=Cart.objects.filter(name=request.user)
+    if len(carts)==0:
+        empty="Your cart is empty"
+        return render(request,'user/cart.html',{'carts':carts,'empty':empty})
+    return render(request,'user/cart.html',{'carts':carts})
+
+def buy_now(request,id):
+    items=Items.objects.get(id=id)
+    return render(request,'user/buynow1.html',{'items':items})
+
+def change_details(request,id):
+    return render(request,'user/changedetails.html')

@@ -14,6 +14,6 @@ class Purchaser(models.Model):
 class Cart(models.Model):
    # name=models.ForeignKey(Purchaser,on_delete=models.CASCADE)
     name=models.CharField(max_length=150)
-    item=models.CharField(max_length=150,default=None,unique=True)
+    item=models.CharField(max_length=150,default=None)
     def __str__(self):
         return self.item

@@ -9,11 +9,14 @@
 
 <body>
     {% if request.user.is_authenticated %}
-    <a href="/logout">logout</a> <h4>Hey {{request.user}}</h4>
+    <a href="/logout">logout</a>
+    <h4>Hey {{request.user}}</h4>
     {% else %}
     <a href="/login/">Login</a>
     {% endif %}
+
     <a href="/">Back</a>
+    <a href="/user/cart/">My cart</a>
     <img src="/uploads/{{item.image}}" alt="">
     <h1>{{item.name}}</h1>
     <h2>{{item.description}}</h2>
@@ -21,9 +24,13 @@
     <h4>Available stock:{{item.count}}</h4>
     <form method="POST">
         {% csrf_token %}
+        {% if message %}
+        <button disabled>Add to cart</button>
+        {% else %}
         <button>Add to cart</button>
+        {% endif %}
     </form>
-    <button>Buy Now</button>
+    <a href="/user/buynow/1/{{item.id}}"><button >Buy Now</button></a>
 </body>
 
 </html>
