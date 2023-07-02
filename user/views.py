@@ -7,22 +7,13 @@ from .models import *
 def UserRegister(request):
     if request.POST:
         form=UserRegisterForm(request.POST)
-        print("got request")
         if form.is_valid():
-            print("validated")
             user=form.save(commit=False)
-            print("form.save(commit)")
             account=User.objects.create_user(user.name,form.cleaned_data['email'],form.cleaned_data['password'])
-            print("account all")
             account.save()
-            print("account.save")
             user.account=account
-            print("user.account=account")
             user.save()
-            print("user.save")
             form.save()
-            print("saved")
-            print(form.errors)
             return redirect('/login/')
     form=UserRegisterForm()
     return render(request,'user/userregister.html',{'form':form})
@@ -47,9 +38,25 @@ def show_cart(request):
         return render(request,'user/cart.html',{'carts':carts,'empty':empty})
     return render(request,'user/cart.html',{'carts':carts})
 
+def change_details(request,id):
+    user_profile=Purchaser.objects.get(account_id=request.user.id)
+    if request.POST:
+        form=EditAddressAndPhoneNo(request.POST,instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/user/buynow/2/{id}')
+    form=EditAddressAndPhoneNo(instance=user_profile)
+    item=Items.objects.get(id=id)
+    return render(request,'user/changedetails.html',{'form':form,'item':item})
+
 def buy_now(request,id):
     items=Items.objects.get(id=id)
-    return render(request,'user/buynow1.html',{'items':items})
+    print(items.count)
+    if request.POST:
+        items.count-=1
+        items.save()
+        return redirect('/user/thankyou/')
+    return render(request,'user/confirmorder.html',{'items':items})
 
-def change_details(request,id):
-    return render(request,'user/changedetails.html')
+def thankyou(request):
+    return render(request,'user/thankyou.html')

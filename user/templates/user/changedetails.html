@@ -7,5 +7,14 @@
 </head>
 <body>
     <h1>Change Details</h1>
+    {{item.name}}
+    <form method="POST">
+        {% csrf_token %}
+        <!-- <h4>Address:{{form.address}}</h4>
+        <h4>Phone number:{{form.phone_number}}</h4> -->
+        {{form.as_p}}
+        <input type="submit" value="save">
+    </form>
+    
 </body>
 </html>
