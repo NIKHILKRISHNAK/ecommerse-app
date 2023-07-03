@@ -20,7 +20,9 @@ def UserRegister(request):
 
 def details(request,id):
     item=Items.objects.get(id=id)
+    print('inside item:',item)
     items=item.name
+    print(items)
     try:
         check=Cart.objects.get(item=items,name=request.user)
         message="Item is already added to the Cart"
@@ -38,6 +40,18 @@ def show_cart(request):
         return render(request,'user/cart.html',{'carts':carts,'empty':empty})
     return render(request,'user/cart.html',{'carts':carts})
 
+def delete_from_cart(request,id):
+    carts=Cart.objects.filter(name=request.user)
+    print('worked')
+    item_to_delete=Cart.objects.filter(name=request.user,id=id)
+    print(item_to_delete)
+    item_to_delete.delete()
+    print('deleted from cart')
+    if len(carts)==0:
+        empty="Your cart is empty"
+        return render(request,'user/cart.html',{'carts':carts,'empty':empty})
+    return render(request,'user/cart.html',{'carts':carts})
+
 def change_details(request,id):
     user_profile=Purchaser.objects.get(account_id=request.user.id)
     if request.POST:
@@ -50,13 +64,39 @@ def change_details(request,id):
     return render(request,'user/changedetails.html',{'form':form,'item':item})
 
 def buy_now(request,id):
+    item=Items.objects.get(id=id)
+    return render(request,'user/buynow.html',{'item':item})
+
+def place_order(request,id):
     items=Items.objects.get(id=id)
+    cart=Cart.objects.get(name=request.user,item=items.name)
+    print(cart.item)
+
     print(items.count)
     if request.POST:
-        items.count-=1
+        Count=request.POST.get('number')
+        print(Count)
+        items.count-=int(Count)
         items.save()
+        cart.delete()
+        print('deleted after place order')
         return redirect('/user/thankyou/')
     return render(request,'user/confirmorder.html',{'items':items})
 
 def thankyou(request):
     return render(request,'user/thankyou.html')
+
+def cart_to_details(request,name):
+    item=Items.objects.get(name=name)
+    print(item)
+    items=item.name
+    print(items)
+    try:
+        check=Cart.objects.get(item=items,name=request.user)
+        message="Item is already added to the Cart"
+        return render(request,'user/details.html',{'item':item,'message':message})
+    except:
+        if request.POST:
+            cart=Cart(name=request.user,item=items)
+            cart.save()
+    return render(request,'user/details.html',{'item':item})
