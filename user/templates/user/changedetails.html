@@ -9,13 +9,18 @@
 
 <body>
     <h1>Change Details</h1>
+    {% if request.user.is_authenticated %}
     {{item.name}}
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="save">
     </form>
-
+    {% else %}
+    <h6>{{message}}</h6>
+    <h1>Please login to buy the product</h1>
+    <a href="/login/">Go to login</a>
+    {% endif %}
 </body>
 
 </html>

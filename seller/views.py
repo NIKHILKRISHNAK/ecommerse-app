@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import *
 from .forms import *
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 # Create your views here.
 
 @staff_member_required
@@ -12,6 +14,8 @@ def landing(request):
 def items(request):
     items=Items.objects.all()
     return render(request,'seller/items.html',{'items':items})
+
+@staff_member_required
 def details(request,id):
     item=Items.objects.get(id=id)
     return render(request,'seller/details.html',{'item':item})
@@ -47,3 +51,20 @@ def delete(request,id):
     item=Items.objects.get(id=id)
     item.delete()
     return redirect('/seller/items/')
+
+@staff_member_required
+def create_seller(request):
+    if request.POST:
+        print('request recieved')
+        form=UserCreationForm(request.POST or None)
+        print('form taken')
+        if form.is_valid():
+            print('validated')
+            User=form.save(commit=False)
+            User.is_staff=True
+            User.is_superuser=True
+            User.save()
+            print('new seller created')
+            return redirect('/login/')
+    form=UserCreationForm()
+    return render(request,'seller/create_seller.html',{'form':form})

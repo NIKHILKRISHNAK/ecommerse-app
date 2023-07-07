@@ -17,3 +17,4 @@ class Cart(models.Model):
     item=models.CharField(max_length=150,default=None)
     def __str__(self):
         return self.item
+    

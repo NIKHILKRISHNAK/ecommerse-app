@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Now</title>
 </head>
+
 <body>
     <h1>Buy now 2 for payment </h1>
-    <a href="/user/buynow/3/{{item.id}}">continue</a>
+    <form method="POST">
+        {% csrf_token %}
+        <h4>Count:<input type="number" name="number" value="1" required id="countid" oninput="showtotal()"></h4>
+        <h4>upi <input type="radio" name="payment_method" value="upi" required></h4>
+        <h4>Net Banking <input type="radio" name="payment_method" value="net_banking" required></h4>
+        <h4>Cash on Delivery <input type="radio" name="payment_method" value="cash_on_delivery" required></h4>
+        <div id="my-data" json-data="{{json_data}}"></div>
+        <h3>Total: ₹ <h3 id="total-reciever">{{item.price}}</h3>
+        </h3>
+        <input type="submit" value="check">
+    </form>
+
+    <script>
+        function showtotal() {
+            var JsonData = JSON.parse(document.getElementById("my-data").getAttribute('json-data'));
+            var jsonVariable = JsonData.price;
+            count = document.getElementById('countid').value;
+            var total = jsonVariable * count
+            document.getElementById("total-reciever").innerHTML = total
+
+
+        }
+    </script>
 </body>
+
 </html>

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    {{send}}
     {% if request.user.is_authenticated %}
     <a href="/logout">logout</a>
     <h4>Hey {{request.user}}</h4>
@@ -17,6 +18,13 @@
 
     <a href="/">Back</a>
     <a href="/user/cart/">My cart</a>
+    {% if message %}
+    <img src="/uploads/{{item.image}}" alt="">
+    <h1>{{item.name}}</h1>
+    <h2>{{item.description}}</h2>
+    <h2>₹ {{item.price}}</h2>
+    <h1>{{message}}</h1>
+    {% else %}
     <img src="/uploads/{{item.image}}" alt="">
     <h1>{{item.name}}</h1>
     <h2>{{item.description}}</h2>
@@ -31,6 +39,7 @@
         {% endif %}
     </form>
     <a href="/user/buynow/1/{{item.id}}"><button >Buy Now</button></a>
+    {% endif %}
 </body>
 
 </html>
