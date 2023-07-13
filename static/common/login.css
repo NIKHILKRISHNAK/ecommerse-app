@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    background-color: #207de7;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:0px;
+    height: 50px;
+    padding: 5px;
+    top:0;
+    position: sticky;
+    z-index: 9999;
+}
+nav a:hover{
+    color: white;
+}
+nav a{
+    font-size:medium;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+    color:black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.nonnav{
+    text-align: center;
+    display: block;
+    padding: 30px;
+}
+form{
+    display: block;
+    padding-block: 10px;
+}
+input{
+    border: 1px solid #207de7;
+    width: 25%;
+    height: 25px;
+    margin: 10px;
+}
+input:focus{
+border: 1px solid #207de7;
+outline: 1px solid #207de7;
+
+}
+input[type="submit"]{
+    background-color: #207de7;
+    color: white;
+    width: 70px;
+    padding: 5px;
+    height: fit-content;
+    border: 1px solid #207de7;
+    border-radius: 5px;
+    margin: 10px;
+}
+input[type="submit"]:hover{
+    background-color: white;
+    color: #207de7;
+    border: 1px solid #207de7;
+    cursor: pointer;
+}
+.signup{
+    text-decoration: underline;
+}

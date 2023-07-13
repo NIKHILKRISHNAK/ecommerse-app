@@ -1,31 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}
+Buy Now
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/user/confirmorder.css">
+{% endblock style %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy Now</title>
-</head>
+{% block header %}
 
-<body>
-    <h1>Buy Now 3</h1>
-    {% if message %}
-    <h1>{{message}}</h1>
-
-    {% else %}
+{% endblock header %}
+{% block body %}
+<nav>
     <a href="/">Back</a>
-    <a href="/user/cart/">My cart</a>
-    <img src="/uploads/{{items.image}}" alt="">
-    <h1>{{items.name}}</h1>
-    <h2>{{items.description}}</h2>
-    <h2>₹ {{items.price}}</h2>
-    <h4>Available stock:{{items.count}}</h4>
-    <form method="POST">
-        {% csrf_token %}
-
-        <button>Place order</button>
-    </form>
+    <h1>Buy Now 3</h1>
+    {% if request.user.is_authenticated %}
+    <a href="/logout/">logout</a>
+    {% else %}
+    <a href="/login/">login</a>
     {% endif %}
-</body>
+</nav>
+<div class="upper">
+    <div class="photo">
+        <img src="/uploads/{{items.image}}" alt="">
+    </div>
+    <div class="text">
+        <h2>{{items.name}}</h2>
+        <h3>{{items.description}}</h3>
+        
+        <form method="POST">
+            {% csrf_token %}
+    </div>
+</div>
+<div class="details">
+<h3>Address:</h3>
+<textarea name="" id="" cols="30" rows="10" readonly>{{user.address}}</textarea>
+<h3>Phone Number:</h3>
+<input type="text" value="{{user.phone_number}}" readonly>
+<div class="amount">
+<h2>Total Amount:</h2>
+<h2>₹ {{total}}</h2>
+</div>
+</div>
+<div class="buttons">
+    <button>Place order</button>
+</div>
+</form>
 
-</html>
+{% endblock body %}

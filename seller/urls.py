@@ -6,6 +6,6 @@ urlpatterns=[
     path('details/<int:id>',details),
     path('createitem/',create_item),
     path('update/<int:id>',update),
-    path('delete/',delete),
+    path('delete/<int:id>',delete),
     path('create-seller/',create_seller)
 ]

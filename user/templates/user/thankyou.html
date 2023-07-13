@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank you</title>
-</head>
-<body>
-    <h1>THANK YOU FOR YOUR ORDER</h1>
-    <a href="/">Back to Home Page</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+Thank you
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/user/thankyou.css">
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<div class="container">
+<div class="box">
+<h1>THANK YOU FOR YOUR ORDER</h1>
+<a href="/">Back to Home Page</a>
+</div>
+
+</div>
+{% endblock body %}

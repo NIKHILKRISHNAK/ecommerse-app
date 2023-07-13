@@ -1,45 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}
+Details
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/user/edetails.css">
+{% endblock style %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
-</head>
+{% block header %}
 
-<body>
-    {{send}}
+{% endblock header %}
+{% block body %}
+<nav>
+    <a href="/">Back</a>
     {% if request.user.is_authenticated %}
+    <a href="/profile/">
+        <h4>Hey {{request.user}}</h4>
+    </a>
+    {% endif %}
+
+    <a href="/user/cart/">My cart</a>
+
+    {% if request.user.is_authenticated %}
+
     <a href="/logout">logout</a>
-    <h4>Hey {{request.user}}</h4>
     {% else %}
     <a href="/login/">Login</a>
     {% endif %}
-
-    <a href="/">Back</a>
-    <a href="/user/cart/">My cart</a>
-    {% if message %}
+</nav>
+{{send}}
+{% if not message %}
+<div class="photo">
     <img src="/uploads/{{item.image}}" alt="">
+</div>
+<div class="text">
     <h1>{{item.name}}</h1>
-    <h2>{{item.description}}</h2>
-    <h2>₹ {{item.price}}</h2>
-    <h1>{{message}}</h1>
-    {% else %}
-    <img src="/uploads/{{item.image}}" alt="">
-    <h1>{{item.name}}</h1>
-    <h2>{{item.description}}</h2>
+    <h3>{{item.description}}</h3>
     <h2>₹ {{item.price}}</h2>
     <h4>Available stock:{{item.count}}</h4>
     <form method="POST">
         {% csrf_token %}
-        {% if message %}
-        <button disabled>Add to cart</button>
-        {% else %}
-        <button>Add to cart</button>
-        {% endif %}
+        <div class="buttons">
+            {% if message %}
+            <button class="btn" id="disabled" disabled>Add to cart</button>
+            {% else %}
+            <button class="btn">Add to cart</button>
+            {% endif %}
     </form>
-    <a href="/user/buynow/1/{{item.id}}"><button >Buy Now</button></a>
-    {% endif %}
-</body>
+    <a href="/user/buynow/1/{{item.id}}"><button class="btn" type="button">Buy Now</button></a>
+</div>
+</div>
+{% else %}
+<div class="out">
+    <div style="opacity: 0.3;" class="photo">
+        <img src="/uploads/{{item.image}}" alt="">
+    </div>
+    <div class="text">
+        <h1 style="opacity: 0.3;">{{item.name}}</h1>
+        <h3 style="opacity: 0.3;">{{item.description}}</h3>
+        <h2 style="opacity: 0.3;">₹ {{item.price}}</h2>
+        <h2 style="opacity: 1;">Out Of Stoke</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div style="opacity: 0.3;" class="buttons">
+                {% if message %}
+                <button class="disabled" disabled>Add to cart</button>
+                {% else %}
+                <button class="disabled" disabled>Add to cart</button>
+                {% endif %}
+        </form>
+        <button class="disabled" type="button" disabled>Buy Now</button>
+    </div>
+</div>
+</div>
+{% endif %}
 
-</html>
+{% endblock body %}

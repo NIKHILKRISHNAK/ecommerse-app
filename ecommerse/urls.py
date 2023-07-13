@@ -16,19 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import landing
+from .views import landing,profile
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import urls
 from common.views import login_user
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 urlpatterns = [
+    path('favicon.ico',RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('admin/', admin.site.urls),
     path('', landing),
     path('seller/',include('seller.urls')),
     path('user/',include('user.urls')),
     path('login/',login_user),
-    path('',include(urls))
+    path('',include(urls)),
+    path('profile/',profile)
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

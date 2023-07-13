@@ -22,29 +22,46 @@ def details(request,id):
 
 @staff_member_required
 def create_item(request):
+    category_list=['Bags','Laptops','Mobile Phones','Kids','Electronics','School & Accessories','MakeUp','Outit']
     if request.method == 'POST':
-        form=CreateItemForm(request.POST,request.FILES)
+        name=request.POST['name']
+        description=request.POST['description']
+        image=request.FILES['image']
+        price=request.POST['price']
+        category=request.POST['category']
+        count=request.POST['count']
+        added_by=request.POST['added_by']
+        form=Items(name=name,description=description,image=image,price=price,category=category,count=count,added_by=added_by)
+
         print("form taken")
-        if form.is_valid():
-            print("form validated")
-            form.save()
-            print("Saved")
-            return redirect('/seller/items/')
-        else:
-            print(form.errors)
-    form=CreateItemForm()
-    return render(request,'seller/createitem.html',{'form':form})
+        print("form validated")
+        form.save()
+        print("Saved")
+        return redirect('/seller/items/')
+    return render(request,'seller/createitem.html',{'category_list':category_list})
 
 @staff_member_required
 def update(request,id):
+    category_list=['Bags','Laptops','Mobile Phones','Kids','Electronics','School & Accessories','MakeUp','Outit']
     item=Items.objects.get(id=id)
     if request.POST:
+        #name=request.POST['name']
+        #description=request.POST['description']
+        #image=request.FILES['image']
+        #price=request.POST['price']
+        #category=request.POST['category']
+        #count=request.POST['count']
+        #added_by=request.POST['added_by']
+        #form=Items(name=name,description=description,image=image,price=price,category=category,count=count,added_by=added_by)
         form=CreateItemForm(request.POST,request.FILES,instance=item)
-        if form.is_valid():
-            form.save()
-            return redirect(f'/seller/details/{id}')
+
+        print('form added')
+        #if form.is_valid():
+        print('validated')
+        form.save()
+        return redirect(f'/seller/details/{id}')
     form=CreateItemForm(instance=item)
-    return render(request,'seller/update.html',{'form':form,'item':item})
+    return render(request,'seller/update.html',{'form':form,'item':item,'category_list':category_list})
 
 @staff_member_required
 def delete(request,id):
@@ -62,7 +79,6 @@ def create_seller(request):
             print('validated')
             User=form.save(commit=False)
             User.is_staff=True
-            User.is_superuser=True
             User.save()
             print('new seller created')
             return redirect('/login/')

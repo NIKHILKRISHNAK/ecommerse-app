@@ -1,19 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Landing</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Seller Landing
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/seller/landing.css">
+{% endblock style %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<nav>
     {% if request.user.is_authenticated %}
-    <a href="/logout">logout</a> <h4>Hey {{request.user}}</h4>
+    <a href="/profile/">
+        <h4 style="cursor: pointer">Hey {{request.user}}</h4>
+    </a>
+    {% endif %}
+    <a href="/seller/items/">
+        All Items
+    </a>
+    {% if request.user.is_superuser %}
+    <a href="/seller/create-seller/">
+        Create new Seller
+    </a>
+    {% endif %}
+    <a href="/">Go as User</a>
+    {% if request.user.is_authenticated %}
+    <a href="/logout">logout</a>
     {% else %}
     <a href="/login/">Login</a>
     {% endif %}
-    <a href="/seller/create-seller/">Create new Seller</a>
+</nav>
+<div class="under">
     <h1>Seller Landing</h1>
-    <a href="/seller/items/">All Items</a>
-    <a href="/logout">Logout</a>
-</body>
-</html>
+<div id="MyChart" style="width: 100%; max-width: 600px;  height: 500px;"></div>
+</div>
+
+{% endblock body %}

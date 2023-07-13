@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/common/login.css">
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<nav>
+    <a style="cursor: pointer;" onclick="history.back()">Back</a>
     <h1>Login</h1>
+</nav>
+<div class="nonnav">
     <form method="POST">
         {% csrf_token %}
-        {{form}}
+        <h3>Username:</h3>{{form.username}}
+        <h3>Password:</h3>{{form.password}}
+        <br>
         <input type="submit" value="Login">
     </form>
-    <a href="/user/userregister/">Sign Up</a>
-</body>
-</html>
+    <label for="a">Don't have an account </label><a class="signup" href="/user/userregister/">Sign Up</a>
+</div>
+{% endblock body %}

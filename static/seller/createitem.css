@@ -1,0 +1,110 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    background-color: #207de7;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+    height: 50px;
+    padding: 5px;
+    position: sticky;
+    top: 0;
+}
+
+nav a:hover {
+    color: white;
+}
+
+nav a {
+    font-size: medium;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.nonnav {
+    display: block;
+    text-align: center;
+}
+
+form {
+    padding: 20px;
+    justify-content: space-around;
+
+}
+
+input {
+    width: 30%;
+    height: 25px;
+    border:1px solid #207de7;
+    border-radius: 5px;
+
+}
+
+select {
+    width: 30%;
+    height: 25px;
+    padding: 10px;
+    border:1px solid #207de7;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 30%;
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: none;
+    border:1px solid #207de7;
+    border-radius: 5px;
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
+input[type="file"] {
+    height: 25px;
+    width: 29%;
+    text-align: center;
+    justify-content: center;
+    padding: 5px;
+    border:1px solid #207de7;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #207de7;
+    width: 70px;
+    height: 27px;
+    border: 2px solid #207de7;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    margin: 20px;
+}
+input:focus{
+    outline:1px solid #207de7;
+}
+textarea:focus{
+    outline:1px solid #207de7;
+}
+select:focus{
+    outline:1px solid #207de7;
+
+}
+.readonly{
+    cursor: auto;
+}
+input[type="submit"]:hover{
+    background-color: white;
+    color: #207de7;
+}

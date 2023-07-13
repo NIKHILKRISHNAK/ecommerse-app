@@ -15,12 +15,20 @@
     <a href="/seller/details/{{item.id}}">Back</a>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h4>Name:{{form.name}}</h4>
-        <h4>Description:{{form.description}}</h4>
-        <h4>Image:{{form.image}}</h4>
-        <h4>Price:{{form.price}}</h4>
-        <h4>Category:{{form.category}}</h4>
-        <h4>Count:{{form.count}}</h4>
+        <!-- <h4>Name:<input type="text" name="name" required></h4>
+        <h4>Description:<textarea name="description" required></textarea></h4>
+        <h4>Image:<input type="file" name="image" accept="image/*" required></h4>
+        <h4>Price:<input type="number" name="price" required></h4>
+        <h4>
+            Category:<select name="category" required>
+                {% for list in category_list %}
+                <option value="{{list}}">{{list}}</option>
+                {% endfor %}
+            </select>
+        </h4>
+        <h4>Count:<input type="number" name="count" value="1" required></h4>
+        <h4>Added By:<input type="text" name="added_by" value="{{request.user}}" readonly required></h4> -->
+        {{form.as_p}}
         <input type="submit" value="Save">
     </form>
 </body>

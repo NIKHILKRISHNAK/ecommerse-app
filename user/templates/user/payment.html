@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+Buy Now
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/user/epayment.css">
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<nav>
+    <a href="/user/buynow/1/{{item.id}}">Back</a>
+    <h1>Payment type & Item Count</h1>
+    {% if request.user.is_authenticated %}
+    <a href="/profile/">Hey {{request.user}}</a>
+    <a href="/logout/">logout</a>
+
+    {% else %}
+    <a href="/login/">login</a>
+    {% endif %}
+</nav>
+<div class="nonnav">
+    {{message}}
+    {% if message %}
+    <h5>Available stoke:{{item.count}}</h5>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Count:<input class="count" type="number" name="number" value="1" required id="countid" oninput="showtotal()"></h3>
+        <h2>Select Your Payment Method</h2>
+        <div class="radio">
+            <h3>UPI </h3><input type="radio" name="payment_method" value="upi" required>
+        </div>
+        <div class="radio">
+            <h3>Net Banking </h3><input type="radio" name="payment_method" value="net_banking" required>
+        </div>
+        <div class="radio">
+            <h3>Cash on Delivery </h3><input type="radio" name="payment_method" value="cash_on_delivery" required>
+        </div>
+
+        <div id="my-data" json-data="{{json_data}}"></div>
+        <div class="money">
+            <h3>Total: ₹ </h3>
+            <h3 id="total-reciever">{{item.price}}</h3>
+        </div>
+        <input type="submit" value="check">
+    </form>
+</div>
+<script>
+    function showtotal() {
+        var JsonData = JSON.parse(document.getElementById("my-data").getAttribute('json-data'));
+        var jsonVariable = JsonData.price;
+        count = document.getElementById('countid').value;
+        var total = jsonVariable * count
+        document.getElementById("total-reciever").innerHTML = total
+
+
+    }
+</script>
+{% endblock body %}

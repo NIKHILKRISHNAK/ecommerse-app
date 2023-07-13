@@ -1,21 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registe User</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Register User
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/user/euserregister.css">
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<nav>
+    <a style="cursor: pointer;" onclick="history.back()">Back</a>
     <h1>Register User</h1>
-    
+</nav>
+<div class="nonnav">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h4>Name:{{form.name}}</h4>
-        <h4>Phone No:{{form.phone_number}}</h4>
-        <h4>Address:{{form.address}}</h4>
-        <h4>Email:{{form.email}}</h4>
-        <h4>Password:{{form.password}}</h4>
+        <h4>Name:</h4>{{form.name}}
+        <h4>Phone No:</h4>{{form.phone_number}}
+        <h4>Address:</h4>{{form.address}}
+        <h4>Email:</h4>{{form.email}}
+        <h4>Password:</h4>{{form.password}} <br>
         <input type="submit" value="Sign Up">
     </form>
-</body>
-</html>
+</div>
+{% endblock body %}
