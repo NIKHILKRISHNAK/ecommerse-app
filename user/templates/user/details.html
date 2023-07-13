@@ -27,29 +27,8 @@ Details
     <a href="/login/">Login</a>
     {% endif %}
 </nav>
-{{send}}
-{% if not message %}
-<div class="photo">
-    <img src="/uploads/{{item.image}}" alt="">
-</div>
-<div class="text">
-    <h1>{{item.name}}</h1>
-    <h3>{{item.description}}</h3>
-    <h2>₹ {{item.price}}</h2>
-    <h4>Available stock:{{item.count}}</h4>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="buttons">
-            {% if message %}
-            <button class="btn" id="disabled" disabled>Add to cart</button>
-            {% else %}
-            <button class="btn">Add to cart</button>
-            {% endif %}
-    </form>
-    <a href="/user/buynow/1/{{item.id}}"><button class="btn" type="button">Buy Now</button></a>
-</div>
-</div>
-{% else %}
+{% if message %}
+{{message}}
 <div class="out">
     <div style="opacity: 0.3;" class="photo">
         <img src="/uploads/{{item.image}}" alt="">
@@ -72,6 +51,30 @@ Details
     </div>
 </div>
 </div>
+{% else %}
+{{send}}
+
+<div class="photo">
+    <img src="/uploads/{{item.image}}" alt="">
+</div>
+<div class="text">
+    <h1>{{item.name}}</h1>
+    <h3>{{item.description}}</h3>
+    <h2>₹ {{item.price}}</h2>
+    <h4>Available stock:{{item.count}}</h4>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="buttons">
+            {% if message %}
+            <button class="btn" id="disabled" disabled>Add to cart</button>
+            {% else %}
+            <button class="btn">Add to cart</button>
+            {% endif %}
+    </form>
+    <a href="/user/buynow/1/{{item.id}}"><button class="btn" type="button">Buy Now</button></a>
+</div>
+</div>
+
 {% endif %}
 
 {% endblock body %}

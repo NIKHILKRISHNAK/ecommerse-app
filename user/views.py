@@ -22,15 +22,16 @@ def UserRegister(request):
 def details(request,id):
     item=Items.objects.get(id=id)
     count=item.count
-    print(count)
+    
     if count!=0:
+        print(count)
         print('inside item:',item)
         items=item.name
         print(items)
         try:
             check=Cart.objects.get(item=items,name=request.user)
             message="Item is already added to the Cart"
-            return render(request,'user/details.html',{'item':item,'message':message})
+            return render(request,'user/details.html',{'item':item,'already':message})
         except:
             if request.POST:
                 if request.user.is_authenticated:
