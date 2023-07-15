@@ -5,7 +5,9 @@
 }
 .container{
     color: black;
-    display: flex;
+    display: grid;
+    grid: 200px / auto auto auto;
+    grid-gap: 10px;
     padding:10px;
     justify-content: space-around ;
 }
@@ -32,6 +34,7 @@ nav{
     padding: 5px;
     top:0;
     position: sticky;
+    z-index: 9999;
 }
 nav a:hover{
     color: white;

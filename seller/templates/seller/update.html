@@ -1,35 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Update
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/seller/eupdate.css">
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<nav>
+    <a href="/seller/details/{{item.id}}">Back</a>
     {% if request.user.is_authenticated %}
-    <a href="/logout">logout</a> <h4>Hey {{request.user}}</h4>
+    <a href="/profile/">
+        <h4>Hey {{request.user}}</h4>
+    </a>
+    {% endif %}
+    <h1>Update Item</h1>
+    {% if request.user.is_authenticated %}
+    <a href="/logout">logout</a>
     {% else %}
     <a href="/login/">Login</a>
     {% endif %}
-    <h1>Update Item</h1>
-    <a href="/seller/details/{{item.id}}">Back</a>
+</nav>
+<div class="nonnav">
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <!-- <h4>Name:<input type="text" name="name" required></h4>
-        <h4>Description:<textarea name="description" required></textarea></h4>
-        <h4>Image:<input type="file" name="image" accept="image/*" required></h4>
-        <h4>Price:<input type="number" name="price" required></h4>
-        <h4>
-            Category:<select name="category" required>
-                {% for list in category_list %}
-                <option value="{{list}}">{{list}}</option>
-                {% endfor %}
-            </select>
-        </h4>
-        <h4>Count:<input type="number" name="count" value="1" required></h4>
-        <h4>Added By:<input type="text" name="added_by" value="{{request.user}}" readonly required></h4> -->
-        {{form.as_p}}
+        <h3>Name:</h3>
+        {{form.name}}
+        <h3>Description:</h3>
+        {{form.description}}
+        <h3>Image:</h3>
+        <div class="image">
+            {{form.image}}
+        </div>
+        <h3>Price:</h3>
+        {{form.price}}
+        <h3>Category:</h3>
+        {{form.category}}
+        <h3>Count:</h3>
+        {{form.count}}
+        <h3>Added By:</h3>
+        {{form.added_by}} <br>
         <input type="submit" value="Save">
     </form>
-</body>
-</html>
+</div>
+{% endblock body %}

@@ -1,16 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Seller</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Create Seller
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="/static/seller/create_seller.css">
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<nav>
+    <a href="/seller/">Back</a>
     <h1>Create Seller</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Save">
-    </form>
-</body>
-</html>
+
+    {% if request.user.is_authenticated %}
+    <a href="/logout/">logout</a>
+    {% else %}
+    <a href="/login/">login</a>
+    {% endif %}
+
+</nav>
+<div class="nonnav">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Username:</h3>
+    {{form.username}}
+    <p> Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+    <h3>Password:</h3>
+    {{form.password1}}
+    <p>Your password can’t be too similar to your other personal information.
+        Your password must contain at least 8 characters.
+        Your password can’t be a commonly used password.
+        Your password can’t be entirely numeric.</p>
+        <h3>Confirm Password:</h3>
+        {{form.password2}} <br>
+    <input type="submit" value="Save">
+</form>
+</div>
+{% endblock body %}

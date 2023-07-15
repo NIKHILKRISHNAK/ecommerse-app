@@ -75,6 +75,6 @@ a{
     cursor: pointer;
 }
 .disabled:hover{
-    color: #2f65a3;
+    color: rgb(100, 100, 100);
     cursor: auto;
 }

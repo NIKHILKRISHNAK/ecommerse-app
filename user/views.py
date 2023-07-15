@@ -149,14 +149,13 @@ def place_order(request,id):
                 items.count-=int(count)
                 print('second',items.count)
                 items.save()
+                if check():
+                    Cart.objects.get(name=request.user,item=items.name).delete()
+                    print('deleted after place order')    
+                    return redirect('/user/thankyou/')
             else:
                 message="Not available"
                 return render(request,'user/confirmorder.html',{'items':items,'message':message})
-
-            if check():
-                Cart.objects.get(name=request.user,item=items.name).delete
-                print('deleted after place order')    
-            return redirect('/user/thankyou/')
         return render(request,'user/confirmorder.html',{'items':items,'total':total_amt,'user':user})
     return render(request,'user/confirmorder.html',{'items':items,'total':total_amt})
 
@@ -171,7 +170,7 @@ def cart_to_details(request,name):
     try:
         check=Cart.objects.get(item=items,name=request.user)
         message="Item is already added to the Cart"
-        return render(request,'user/details.html',{'item':item,'message':message})
+        return render(request,'user/details.html',{'item':item,'already':message})
     except:
         if request.POST:
             cart=Cart(name=request.user,item=items)

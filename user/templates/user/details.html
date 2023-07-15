@@ -10,7 +10,7 @@ Details
 
 {% endblock header %}
 {% block body %}
-<nav>
+<nav onload="location.reload()">
     <a href="/">Back</a>
     {% if request.user.is_authenticated %}
     <a href="/profile/">
@@ -41,7 +41,7 @@ Details
         <form method="POST">
             {% csrf_token %}
             <div style="opacity: 0.3;" class="buttons">
-                {% if message %}
+                {% if already %}
                 <button class="disabled" disabled>Add to cart</button>
                 {% else %}
                 <button class="disabled" disabled>Add to cart</button>
@@ -65,10 +65,10 @@ Details
     <form method="POST">
         {% csrf_token %}
         <div class="buttons">
-            {% if message %}
+            {% if already %}
             <button class="btn" id="disabled" disabled>Add to cart</button>
             {% else %}
-            <button class="btn">Add to cart</button>
+            <input type="submit" class="btn" value="Add to cart" >
             {% endif %}
     </form>
     <a href="/user/buynow/1/{{item.id}}"><button class="btn" type="button">Buy Now</button></a>

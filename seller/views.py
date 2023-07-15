@@ -84,3 +84,9 @@ def create_seller(request):
             return redirect('/login/')
     form=UserCreationForm()
     return render(request,'seller/create_seller.html',{'form':form})
+
+@staff_member_required
+def get_orders(request):
+    orders=Orders.objects.all()
+    print(orders)
+    return render(request,'seller/orders.html',{'orders':orders})

@@ -53,10 +53,9 @@ input {
 select {
     width: 30%;
     height: 25px;
-    padding: 10px;
     border:1px solid #207de7;
-    border-radius: 5px;
-}
+    border-radius: 5px; 
+} 
 
 textarea {
     width: 30%;
@@ -80,7 +79,9 @@ input[type="file"] {
     border:1px solid #207de7;
     border-radius: 5px;
 }
-
+input[type="file"]:hover{
+    cursor: pointer;
+}
 input[type="submit"] {
     background-color: #207de7;
     width: 70px;

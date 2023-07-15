@@ -19,7 +19,7 @@ Details
     </a>
     {% endif %}
 
-    <a href="/seller/delete/{{item.id}}">delete</a>
+    <a style="cursor: pointer;" onclick="choice()">delete</a>
     <a href="/seller/update/{{item.id}}">Update</a>
     {% if request.user.is_authenticated %}
     <a href="/logout">logout</a>
@@ -36,4 +36,14 @@ Details
     <h2>₹ {{item.price}}</h2>
     <h4>Available stock:{{item.count}}</h4>
 </div>
+<script>
+    function choice(){
+        if(confirm("Are you sure to delete this product {{item.name}}")==true){
+            window.location.href="/seller/delete/{{item.id}}" ;
+        }
+        else{
+            console.log("Done Nothing");
+        }
+    }
+</script>
 {% endblock body %}

@@ -10,9 +10,9 @@ Buy Now
 
 {% endblock header %}
 {% block body %}
-<nav>
+<nav onload="clearHistory()">
     <a href="/">Back</a>
-    <h1>Buy Now 3</h1>
+    <h1>Place Order</h1>
     {% if request.user.is_authenticated %}
     <a href="/logout/">logout</a>
     {% else %}
@@ -45,5 +45,9 @@ Buy Now
     <button>Place order</button>
 </div>
 </form>
-
+<script>
+    function clearHistory(){
+        history.replaceState({},"",window.location.href);
+    }
+</script>
 {% endblock body %}

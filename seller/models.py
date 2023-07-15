@@ -1,5 +1,6 @@
 from django.db import models
-
+from user.models import Purchaser
+from datetime import datetime
 # Create your models here.
 class Items(models.Model):
     name=models.CharField(max_length=30)
@@ -11,3 +12,10 @@ class Items(models.Model):
     added_by=models.CharField(max_length=30,default=None)
     def __str__(self):
         return self.name
+    
+class Orders(models.Model):
+    item=models.ForeignKey(Items,on_delete=models.CASCADE)
+    ordered_by=models.ForeignKey(Purchaser,on_delete=models.CASCADE)
+    date=models.DateField(default=datetime.now)
+    def __str__(self):
+        return self.item.name
