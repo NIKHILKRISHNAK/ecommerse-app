@@ -5,6 +5,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .forms import ChangeDeliveryStatusForm
 # Create your views here.
 
 @staff_member_required
@@ -87,6 +88,36 @@ def create_seller(request):
 
 @staff_member_required
 def get_orders(request):
-    orders=Orders.objects.all()
+    orders=Orders.objects.filter(item_adder=request.user)
+    print(len(orders))
+    if len(orders)==0:
+        message="No Orders"
+        return render(request,'seller/orders.html',{'orders':orders,'message':message})
+
     print(orders)
     return render(request,'seller/orders.html',{'orders':orders})
+
+@login_required
+@staff_member_required
+def order_details(request,id):
+    order=Orders.objects.get(id=id)
+    if request.POST:
+        form=ChangeDeliveryStatusForm(request.POST,instance=order)
+        print('form taken')
+        if form.is_valid():
+            print('validated')
+            form.save()
+            print('Updated')
+            status=form.cleaned_data['order_status']
+            print(status)
+            if status=='Cancelled':
+                order.delete()
+            return redirect('/seller/orders/')
+        else:
+            print(form.errors)
+    form=ChangeDeliveryStatusForm(instance=order)
+    return render(request,'seller/orderdetails.html',{'order':order,'form':form})
+
+def remove_from_order(request,id):
+    order=Orders.objects.get(id=id)
+    return redirect('seller/orderdetails.html')

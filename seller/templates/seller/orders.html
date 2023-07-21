@@ -3,15 +3,34 @@
 Orders
 {% endblock title %}
 {% block style %}
-
+<link rel="stylesheet" href="/static/seller/orders.css">
 {% endblock style %}
 
 {% block header %}
 
 {% endblock header %}
 {% block body %}
-<h1>Orders</h1>
+<nav>
+    <a href="/seller/">Back</a>
+    <h1>Orders</h1>
+    {% if request.user.is_authenticated %}
+    <a href="/logout/">logout</a>
+    {% else %}
+    <a href="/login/">login</a>
+    {% endif %}
+</nav>
+{% if message %}
+<div class="mess">
+<h1 class="messsage">{{message}}</h1>
+</div>
+{% endif %}
 {% for order in orders %}
-{{order.item}}
+<a href="/seller/orderdetails/{{order.id}}">
+    <div class="eachitem"> {{order.item}}
+        <h4>Purchaser:{{order.ordered_by}}</h4>
+        <h4>Order Status:{{order.order_status}}</h4>
+        <h4>Date:{{order.date}}</h4>
+    </div>
+</a>
 {% endfor %}
 {% endblock body %}

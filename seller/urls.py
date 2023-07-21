@@ -8,5 +8,7 @@ urlpatterns=[
     path('update/<int:id>',update),
     path('delete/<int:id>',delete),
     path('create-seller/',create_seller),
-    path('orders/',get_orders)
+    path('orders/',get_orders),
+    path('orderdetails/<int:id>',order_details),
+    path('remove-from-order/<int:id>',remove_from_order)
 ]

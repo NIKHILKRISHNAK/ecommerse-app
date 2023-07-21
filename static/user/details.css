@@ -74,7 +74,7 @@ a{
     font-weight: bold;
     cursor: pointer;
 }
-.disabled:hover{
-    color: rgb(100, 100, 100);
+.disabled:hover,#disabled:hover{
+    color: rgb(37, 110, 206);
     cursor: auto;
 }

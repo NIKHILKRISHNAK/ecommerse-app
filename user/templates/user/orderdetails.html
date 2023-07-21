@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock title %}
+{% block style %}
+
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<a href="/user/orders/">Back</a>
+<h1>order details</h1>
+<img src="/uploads/{{item.item.image}}" alt="">
+<h2>{{item.item.name}}</h2>
+<h3>{{item.item.description}}</h3>
+<h4> Price : ₹{{item.item.price}}</h4>
+<h4>Ordered on: {{item.date}}</h4>
+<h4>Status :{{item.order_status}}</h4>
+{% endblock body %}

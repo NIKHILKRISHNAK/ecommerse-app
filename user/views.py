@@ -5,6 +5,7 @@ from seller.models import Items
 from .models import *
 from django.contrib.auth.decorators import login_required
 import json
+from seller.models import Orders
 def UserRegister(request):
     if request.POST:
         form=UserRegisterForm(request.POST)
@@ -109,10 +110,13 @@ def payment(request,id):
             print(total)
             print(choice)
             if choice=='upi':
+                request.session['payment']=choice
                 return redirect(f'/user/upi/{id}')
             elif choice=='net_banking':
+                request.session['payment']=choice
                 return redirect(f'/user/net-banking/{id}')
             elif choice=='cash_on_delivery':
+                request.session['payment']=choice
                 return redirect(f'/user/buynow/3/{id}')
         else:
             return render(request,'user/payment.html',{'item':item,'total':total,'json_data':json_data,'message':"This much Items are not in the stoke"})
@@ -144,15 +148,23 @@ def place_order(request,id):
                 return False
                 
         if request.POST:
+            payment_method=request.session.get('payment')
             if items.count!= 0:
                 print('first',items.count)
                 items.count-=int(count)
                 print('second',items.count)
                 items.save()
+                order=Orders()
+                order.item=items
+                order.ordered_by=user
+                order.item_adder=items.added_by
+                order.payment=payment_method
+                order.save()
                 if check():
                     Cart.objects.get(name=request.user,item=items.name).delete()
                     print('deleted after place order')    
                     return redirect('/user/thankyou/')
+                return redirect('/user/thankyou/')
             else:
                 message="Not available"
                 return render(request,'user/confirmorder.html',{'items':items,'message':message})
@@ -176,3 +188,17 @@ def cart_to_details(request,name):
             cart=Cart(name=request.user,item=items)
             cart.save()
     return render(request,'user/details.html',{'item':item})
+
+@login_required
+def orders(request):
+    purchaser=Purchaser.objects.get(name=request.user)
+    print(purchaser)
+    user_orders=Orders.objects.filter(ordered_by=purchaser)
+    print(user_orders)
+    return render(request,'user/orders.html',{'orders':user_orders})
+
+@login_required
+def order_details(request,id):
+    item=Orders.objects.get(id=id)
+    print(item)
+    return render(request,'user/orderdetails.html',{'item':item})

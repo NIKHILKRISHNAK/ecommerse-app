@@ -12,6 +12,8 @@ urlpatterns=[
     path('details/<str:name>/',cart_to_details),
     path('upi/<int:id>/',upi),
     path('net-banking/<int:id>/',net_banking),
-    path('cash-on-delivery/<int:id>/',cash_on_delivery)
+    path('cash-on-delivery/<int:id>/',cash_on_delivery),
+    path('orders/',orders),
+    path('order-details/<int:id>/',order_details)
     
 ]

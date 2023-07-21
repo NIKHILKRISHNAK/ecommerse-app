@@ -17,5 +17,8 @@ class Orders(models.Model):
     item=models.ForeignKey(Items,on_delete=models.CASCADE)
     ordered_by=models.ForeignKey(Purchaser,on_delete=models.CASCADE)
     date=models.DateField(default=datetime.now)
+    item_adder=models.CharField(max_length=30,default=None)
+    payment=models.CharField(max_length=50,default=None)
+    order_status=models.CharField(max_length=60,default='Placed Order',choices=[('Placed Order','Placed Order'),('Shipped','Shipped'),('Out for Delivery','Out for Delivery'),('Delivered','Delivered'),('Cancelled','Cancelled')])
     def __str__(self):
         return self.item.name

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock title %}
+{% block style %}
+
+{% endblock style %}
+
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<h1>user order</h1>
+{% for order in orders %}
+<a href="/user/order-details/{{order.id}}">{{order}}</a>
+{% endfor %}
+{% endblock body %}

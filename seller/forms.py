@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Items
+from .models import Items,Orders
 from django import forms
 category_list=['Bags','Laptops','Mobile Phones','Kids','Electronics','School & Accessories','MakeUp','Outit']
 
@@ -20,3 +20,8 @@ class CreateItemForm(ModelForm):
             ('MakUp','MakUp'),
             ('Outfit','Outfit')
             ])
+        
+class ChangeDeliveryStatusForm(ModelForm):
+    class Meta:
+        model=Orders
+        fields='__all__'
