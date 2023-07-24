@@ -30,4 +30,17 @@ a{
 .under{
     text-align: center;
 }
+canvas{
+    width: 500px;
+}
+.charts{
+    display: flex;
+    justify-content: space-between;
+}
+.multi{
+    width: fit-content;
+}
+.mono{
+    width: fit-content;
 
+}

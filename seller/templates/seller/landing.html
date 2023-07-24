@@ -3,9 +3,11 @@
 Seller Landing
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/seller/elanding.css">
+<link rel="stylesheet" href="/static/seller/landing.css">
 {% endblock style %}
 {% block header %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 {% endblock header %}
 {% block body %}
 <nav>
@@ -33,5 +35,73 @@ Seller Landing
 <div class="under">
     <h1>Seller Landing</h1>
 </div>
+<div id="JsonData" json-data="{{JsonData}}"></div>
+<div class="charts">
+    <div class="multi">
+        <a href="/seller/items/"><canvas id="myChart1"></canvas></a>
+    </div>
+    <div class="mono">
+        <a href="/seller/orders/"><canvas id="myChart2"></canvas></a>
+    </div>
+</div>
+<script>
+    var JsonData = JSON.parse(document.getElementById("JsonData").getAttribute('json-data'))
+    //console.log(JsonData.ItemsName)
+    for (i = 0; i < (JsonData.ItemsName).length; i++) {
+        console.log(JsonData.ItemsName[i])
+    }
+    for (i = 0; i < (JsonData.ItemsNumber).length; i++) {
+        console.log(JsonData.ItemsNumber[i])
+    }
+    for (i = 0; i < (JsonData.OrdersName).length; i++) {
+        console.log(JsonData.OrdersName[i])
+    }
+    //console.log(JsonData.ItemsNumber)
+    //console.log(JsonData.OrdersName)
+    const ctx = document.getElementById('myChart1');
+    const ctx2 = document.getElementById('myChart2');
 
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: JsonData.ItemsName,
+            datasets: [{
+                label: 'No of Stocks',
+                data: JsonData.ItemsNumber,
+                borderWidth: 1,
+                backgroundColor: '#468ddf'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    console.log((JsonData.OrdersName).length)
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Available Orders'],
+            datasets: [{
+                label: 'Available Orders',
+                data: [(JsonData.OrdersName).length],
+                borderWidth: 1,
+                backgroundColor: '#468ddf',
+                width: 10,
+                barThickness: 40
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
 {% endblock body %}

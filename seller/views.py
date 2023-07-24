@@ -6,11 +6,30 @@ from .forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import ChangeDeliveryStatusForm
+import json
+from django.core import serializers 
 # Create your views here.
 
 @staff_member_required
 def landing(request):
-    return render(request,'seller/landing.html')
+    items=Items.objects.filter(added_by=request.user)
+    orders=Orders.objects.filter(item__added_by=request.user)
+    ItemsName=[]
+    ItemsNumber=[]
+    OrdersName=[]
+    for item in items:
+        ItemsName.append(item.name)
+        ItemsNumber.append(item.count)
+    for order in orders:
+        OrdersName.append(order.item.name)
+    
+    context={
+        'ItemsName':ItemsName,
+        'ItemsNumber':ItemsNumber,
+        'OrdersName':OrdersName
+    }
+    JsonData=json.dumps(context)
+    return render(request,'seller/landing.html',{'items':items,'orders':orders,'JsonData':JsonData})
 @staff_member_required
 def items(request):
     items=Items.objects.all()
