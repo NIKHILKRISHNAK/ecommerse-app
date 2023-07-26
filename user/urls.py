@@ -14,6 +14,7 @@ urlpatterns=[
     path('net-banking/<int:id>/',net_banking),
     path('cash-on-delivery/<int:id>/',cash_on_delivery),
     path('orders/',orders),
-    path('order-details/<int:id>/',order_details)
+    path('order-details/<int:id>/',order_details),
+    path('cancel-order/<int:id>/',cancel_order)
     
 ]

@@ -22,11 +22,11 @@ Profile
     <img class="icon" src="/static/person.png" alt="">
     <div class="details">
         <h1>{{request.user}}</h1>
-        <h2>Joined on:{{date}}</h2>
-        <h2>Email:{{email}}</h2>
+        <h2>Joined on:  {{date}}</h2>
+        <h2>Email:  {{email}}</h2>
         {% if not request.user.is_superuser and not request.user.is_staff and request.user.is_active %}
-        <h2>Address:{{user.address}}</h2>
-        <h2>Phone No:{{user.phone_number}}</h2>
+        <h2>Address:  {{user.address}}</h2>
+        <h2>Phone No:  {{user.phone_number}}</h2>
         {% endif %}
     </div>
 </div>

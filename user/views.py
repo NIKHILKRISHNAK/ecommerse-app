@@ -6,6 +6,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 import json
 from seller.models import Orders
+from django.http import HttpResponse
 def UserRegister(request):
     if request.POST:
         form=UserRegisterForm(request.POST)
@@ -195,6 +196,10 @@ def orders(request):
     print(purchaser)
     user_orders=Orders.objects.filter(ordered_by=purchaser)
     print(user_orders)
+    print(len(user_orders))
+    if len(user_orders)==0:
+        message="No Orders"
+        return render(request,'user/orders.html',{'orders':user_orders,'message':message})
     return render(request,'user/orders.html',{'orders':user_orders})
 
 @login_required
@@ -202,3 +207,9 @@ def order_details(request,id):
     item=Orders.objects.get(id=id)
     print(item)
     return render(request,'user/orderdetails.html',{'item':item})
+
+def cancel_order(request,id):
+    item=Orders.objects.get(id=id)
+    print(item)
+    item.delete()
+    return redirect('/user/orders/')

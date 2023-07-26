@@ -3,15 +3,32 @@
 
 {% endblock title %}
 {% block style %}
-
+<link rel="stylesheet" href="/static/user/orders.css">
 {% endblock style %}
 
 {% block header %}
 
 {% endblock header %}
 {% block body %}
-<h1>user order</h1>
+<nav>
+    <a href="/profile/">Back</a>
+    <h1>Orders</h1>
+    {% if request.user.authenticated %}
+    <a href="/logout/">logout</a>
+    {% else %}
+    <a href="/login/">login</a>
+    {% endif %}
+</nav>
+{% if message %}
+<div class="mess">
+<h1>{{message}}</h1>
+</div>
+{% endif %}
 {% for order in orders %}
-<a href="/user/order-details/{{order.id}}">{{order}}</a>
+<a href="/user/order-details/{{order.id}}">
+    <div class="eachitem">
+        {{order}}
+    </div>
+</a>
 {% endfor %}
 {% endblock body %}
