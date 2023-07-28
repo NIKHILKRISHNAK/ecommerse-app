@@ -18,11 +18,14 @@
     width:15rem;
     height: 100%;
     border-radius: 10px;
-    box-shadow: 5px 8px 500px rgb(133, 183, 216);
     display: grid;
     place-items: center;
 }
+.eachitem:hover{
+    transform: scale(1.01);
+    box-shadow: 5px 8px 500px rgb(133, 183, 216);
 
+}
 nav{
     background-color: #207de7;
     display: flex;
@@ -47,6 +50,20 @@ a{
     text-decoration: none;
     color:black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.icon{
+    width: 15%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+#profile{
+    width: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 img{
     width: 100%;

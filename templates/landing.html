@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
-<link rel="stylesheet" href="/static/landing.css">
+<link rel="stylesheet" href="/static/elanding.css">
 {% endblock style %}
 
 {% block title %}
@@ -11,7 +11,7 @@ Landing page
 
 <nav>
     {% if request.user.is_authenticated %}
-    <a class="navitem" href="/profile/">Hey {{request.user}}</a>
+    <a id="profile" class="navitem" href="/profile/"> <img class="icon" src="/static/person.png" alt="">Hey {{request.user}}</a>
     {% endif %}
 
     {% if request.user.is_staff %}

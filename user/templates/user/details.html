@@ -3,7 +3,7 @@
 Details
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/user/details.css">
+<link rel="stylesheet" href="/static/user/edetails.css">
 {% endblock style %}
 
 {% block header %}
@@ -52,6 +52,10 @@ Details
 </div>
 </div>
 {% else %}
+<div id="container" class="container">
+    <img class="imgtocart" src="/uploads/{{item.image}}" alt=""><br>
+    <img class="cart" src="/static/cart.png" alt="">
+</div>
 {{send}}
 
 <div class="photo">
@@ -62,19 +66,49 @@ Details
     <h3>{{item.description}}</h3>
     <h2>₹ {{item.price}}</h2>
     <h4>Available stock:{{item.count}}</h4>
-    <form method="POST">
+    <form id="cartform" method="POST">
         {% csrf_token %}
         <div class="buttons">
             {% if already %}
             <button class="btn" id="disabled" disabled>Add to cart</button>
             {% else %}
-            <input type="submit" class="btn" value="Add to cart" >
+            <button type="submit" id="inputbtn" class="btn">Add to cart</button>
             {% endif %}
     </form>
     <a href="/user/buynow/1/{{item.id}}"><button class="btn" type="button">Buy Now</button></a>
-</div>
-</div>
 
+</div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("cartform");
+        const submitButton = document.getElementById("inputbtn")
+        let isSubmitting = false;
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (!isSubmitting) {
+                isSubmitting = true;
+                submitButton.disabled = true;
+            }
+            setTimeout(function () {
+                form.submit();
+            }, 3000);
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const button = document.getElementById("inputbtn");
+        const tragetDiv = document.getElementById("container");
+
+        button.addEventListener("focus", function () {
+            tragetDiv.style.display = "flex";
+        });
+        tragetDiv.addEventListener("blur", function () {
+            tragetDiv.style.display = "none"
+        });
+    });
+    
+</script>
 {% endif %}
 
 {% endblock body %}
