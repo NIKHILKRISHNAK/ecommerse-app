@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 import json
 from seller.models import Orders
 from django.http import HttpResponse
+
+@login_required
 def UserRegister(request):
     if request.POST:
         form=UserRegisterForm(request.POST)
@@ -21,6 +23,7 @@ def UserRegister(request):
     form=UserRegisterForm()
     return render(request,'user/userregister.html',{'form':form})
 
+@login_required
 def details(request,id):
     item=Items.objects.get(id=id)
     count=item.count
@@ -39,6 +42,7 @@ def details(request,id):
                 if request.user.is_authenticated:
                     cart=Cart(name=request.user,item=items)
                     cart.save()
+                    return redirect(f'/user/details/{id}')
                 else:
                     send='Please login to check your cart'
                     return render(request,'user/details.html',{'item':item,'send':send})

@@ -106,7 +106,7 @@ a {
     object-fit: contain;
     padding-left: 10px;
     position: relative;
-    animation: hinge 0.5s ease-in-out;
+    animation: hinge 1s ease-in-out;
     visibility: hidden;
 }
 
@@ -116,7 +116,7 @@ a {
     object-fit: contain;
     z-index: 11;
     visibility: hidden;
-    animation: cartanimation 1s ease-in-out;
+    animation: cartanimation 2s ease-in-out;
 }
 
 @keyframes hinge {

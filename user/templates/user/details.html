@@ -7,7 +7,168 @@ Details
 {% endblock style %}
 
 {% block header %}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
 
+    nav {
+        background-color: #207de7;
+        display: flex;
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0px;
+        height: 50px;
+        padding: 5px;
+        top: 0;
+        position: sticky;
+        z-index: 9999;
+    }
+
+    nav a:hover {
+        color: white;
+    }
+
+    nav a {
+        font-size: medium;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .photo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .text {
+        display: block;
+        padding: 10px;
+        width: fit-content;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        max-width: max-content;
+    }
+
+    .buttons {
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    .btn {
+        background-color: #207de7;
+        width: fit-content;
+        height: 35px;
+        border-radius: 10px;
+        padding: 5px;
+        border: none;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: medium;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        color: white;
+        background-color: #3688e6;
+    }
+
+    .disabled {
+        background-color: #207de7;
+        width: fit-content;
+        height: 35px;
+        border-radius: 10px;
+        padding: 5px;
+        border: none;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: medium;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .disabled:hover,
+    #disabled:hover {
+        color: rgb(37, 110, 206);
+        cursor: auto;
+    }
+
+    .container {
+        position: fixed;
+        top: 2.5rem;
+        left: 0rem;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        width: 70rem;
+        z-index: -11;
+    }
+
+    .imgtocart {
+        width: 4%;
+        aspect-ratio: 3/2;
+        object-fit: contain;
+        padding-left: 10px;
+        position: relative;
+        animation: hinge 1s ease-in-out;
+        visibility: hidden;
+    }
+
+    .cart {
+        width: 7%;
+        aspect-ratio: 3/2;
+        object-fit: contain;
+        z-index: 11;
+        visibility: hidden;
+        animation: cartanimation 2s ease-in-out;
+    }
+
+    @keyframes hinge {
+        0% {
+            width: 4%;
+            visibility: visible;
+        }
+
+        20% {
+            transform: rotate(40deg);
+            visibility: visible;
+        }
+
+        30% {
+            transform: rotate(30deg);
+            visibility: visible;
+        }
+
+        40% {
+            transform: rotate(40deg);
+            visibility: visible;
+        }
+
+        100% {
+            transform: translate(12px, 55px);
+        }
+    }
+
+    @keyframes cartanimation {
+        0% {
+            visibility: visible;
+        }
+
+        50% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0);
+        }
+    }
+</style>
 {% endblock header %}
 {% block body %}
 <nav onload="location.reload()">
@@ -27,6 +188,7 @@ Details
     <a href="/login/">Login</a>
     {% endif %}
 </nav>
+{{alert}}
 {% if message %}
 {{message}}
 <div class="out">
@@ -82,7 +244,7 @@ Details
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("cartform");
-        const submitButton = document.getElementById("inputbtn")
+        const submitButton = document.getElementById("inputbtn");
         let isSubmitting = false;
         form.addEventListener("submit", function (event) {
             event.preventDefault();
@@ -107,7 +269,7 @@ Details
             tragetDiv.style.display = "none"
         });
     });
-    
+
 </script>
 {% endif %}
 
