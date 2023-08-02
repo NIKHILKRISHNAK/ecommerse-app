@@ -71,3 +71,59 @@ img{
     object-fit: contain;
     mix-blend-mode: darken;
 }
+.intro{
+    background-color: white;
+    color: #207de7;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    animation: intro 3s ease-in-out;  
+    transition: all 1s ease;
+}
+.loading{
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #207de7;
+    border-left-color: white;
+    animation: loading 1s infinite;
+}
+.introimg{
+    width: 30%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+@keyframes loading{
+    /* 0%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(200deg);
+
+    }
+    80%{
+        transform: rotate(340deg);
+    } */
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes intro{
+    0%{
+        visibility: visible;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        visibility: visible;
+        opacity: 0;
+    }
+}

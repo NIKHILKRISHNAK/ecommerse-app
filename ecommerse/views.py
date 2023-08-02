@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from user.models import Purchaser
 def landing(request):
     items=Items.objects.all()
+    # show_intro=not request.session.get('intro_shown',False)
+    # request.session['intro_shown']=True
     return render(request,'landing.html',{'items':items})
 @login_required
 def profile(request):

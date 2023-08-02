@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
-<link rel="stylesheet" href="/static/elanding.css">
+<link rel="stylesheet" href="/static/landing.css">
 {% endblock style %}
 
 {% block title %}
@@ -9,9 +9,17 @@ Landing page
 
 {% block body %}
 
+<div id="intro" class="intro" style="display: none;">
+    <img class="introimg" src="/static/introimage.png" alt="">
+    <h1>welcome</h1><br>
+    <div class="loading">
+        <span> .</span>
+    </div>
+</div>
 <nav>
     {% if request.user.is_authenticated %}
-    <a id="profile" class="navitem" href="/profile/"> <img class="icon" src="/static/person.png" alt="">Hey {{request.user}}</a>
+    <a id="profile" class="navitem" href="/profile/"> <img class="icon" src="/static/person.png" alt="">Hey
+        {{request.user}}</a>
     {% endif %}
 
     {% if request.user.is_staff %}
@@ -35,4 +43,16 @@ Landing page
     </a>
     {% endfor %}
 </div>
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+      if (!sessionStorage.getItem("introShown")) {
+        var introDiv = document.getElementById("intro");
+        if (introDiv) {
+          introDiv.style.display = "flex";
+        }
+        sessionStorage.setItem("introShown", "true");
+      }
+    });
+
+</script>
 {% endblock body %}
