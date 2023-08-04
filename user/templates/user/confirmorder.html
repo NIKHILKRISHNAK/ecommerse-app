@@ -3,20 +3,22 @@
 Buy Now
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/user/confirmorder.css">
+<link rel="stylesheet" href="/static/user/econfirmorder.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav onload="clearHistory()">
-    <a href="/">Back</a>
-    <h1>Place Order</h1>
+    <a href="/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
+    <h1><i class="fas fa-shopping-bag" style="font-size: 20px;"></i>  Place Order</h1>
     {% if request.user.is_authenticated %}
-    <a href="/logout/">logout</a>
+    <a href="/logout/"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>logout</a>
     {% else %}
-    <a href="/login/">login</a>
+    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>login</a>
     {% endif %}
 </nav>
 <div class="upper">
@@ -42,7 +44,7 @@ Buy Now
 </div>
 </div>
 <div class="buttons">
-    <button>Place order</button>
+    <button><i class="fas fa-shopping-bag" style="font-size: 20px;"></i>Place order</button>
 </div>
 </form>
 <script>

@@ -3,19 +3,21 @@
 Change Details
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/user/echangedetails.css">
+<link rel="stylesheet" href="/static/user/changedetails.css">
 
 {% endblock style %}
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-    <a href="/user/details/{{item.id}}">Back</a>
+    <a href="/user/details/{{item.id}}"><i class="fas fa-arrow-left" style="font-size: 20px;"></i> Back</a>
     <h1>Confirm address and phone number</h1>
     {% if request.user.is_authenticated %}
     <a href="/profile/">
-        <h4>Hey {{request.user}}</h4>
+        <i class="fas fa-user" style="font-size: 20px;"></i> Hey {{request.user}}
     </a>
     {% endif %}
 </nav>
@@ -36,8 +38,10 @@ Change Details
         <h4>Address </h4>
         {{form.address}}
         <h4>Phone number</h4>
-        {{form.phone_number}} 
-        <input class="sbmt" type="submit" value="Next">
+        <div class="pnb">
+            {{form.phone_number}}
+            <button class="sbmt" type="submit">Next <i class="fas fa-arrow-right" style="font-size: 15px;"></i></button>
+        </div>
     </form>
     {% else %}
     <h6>{{message}}</h6>

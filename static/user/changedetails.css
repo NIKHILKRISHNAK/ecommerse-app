@@ -21,6 +21,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;
@@ -85,14 +88,26 @@ input:focus{
 }
 .sbmt{
 background-color: #207de7;
-width: 50px;
-height: 27px;
+width: 60px;
+height: 28px;
 border: 2px solid #207de7;
 cursor: pointer;
 color: white;
 border-radius: 5px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+padding: 5px;
+padding-bottom: 6px;
+margin-left: 10px;
+
 }
 .sbmt:hover{
     background-color: white;
     color: #207de7;
+}
+.pnb{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
 }

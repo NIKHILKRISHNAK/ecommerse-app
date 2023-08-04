@@ -5,6 +5,9 @@ Thank you
 {% block style %}
 <link rel="stylesheet" href="/static/user/thankyou.css">
 <style>
+    body{
+        background-image: linear-gradient(#207de7,white);
+    }
     .container {
         width: 100%;
         height: 100vh;
@@ -136,6 +139,8 @@ Thank you
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
@@ -149,7 +154,7 @@ Thank you
         <div class="second">
             <img class="tick" src="/static/tick.png" alt="">
             <h1>PLACED ORDER</h1>
-            <a href="/">Back to Home Page</a>
+            <a href="/"><i class="fas fa-home"></i>Back to Home Page</a>
         </div>
     </div>
 </div>

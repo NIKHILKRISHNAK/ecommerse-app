@@ -3,19 +3,21 @@
 Buy Now
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/user/epayment.css">
+<link rel="stylesheet" href="/static/user/payment.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-    <a href="/user/buynow/1/{{item.id}}">Back</a>
+    <a href="/user/buynow/1/{{item.id}}"><i class="fas fa-arrow-left" style="font-size: 20px;"></i> Back</a>
     <h1>Payment type & Item Count</h1>
     {% if request.user.is_authenticated %}
-    <a href="/profile/">Hey {{request.user}}</a>
-    <a href="/logout/">logout</a>
+    <a href="/profile/"><i class="fas fa-user" style="font-size: 20px;"></i>  Hey {{request.user}}</a>
+    <a href="/logout/"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>logout</a>
 
     {% else %}
     <a href="/login/">login</a>
@@ -31,13 +33,13 @@ Buy Now
         <h3>Count:<input class="count" type="number" name="number" value="1" required id="countid" oninput="showtotal()"></h3>
         <h2>Select Your Payment Method</h2>
         <div class="radio">
-            <h3>UPI </h3><input type="radio" name="payment_method" value="upi" required>
+            <h3><i class="fas fa-money-check-alt" style="font-size: 20px;"></i>  UPI </h3><input type="radio" name="payment_method" value="upi" required>
         </div>
         <div class="radio">
-            <h3>Net Banking </h3><input type="radio" name="payment_method" value="net_banking" required>
+            <h3><i class="fas fa-university" style="font-size: 20px;"></i>  Net Banking </h3><input type="radio" name="payment_method" value="net_banking" required>
         </div>
         <div class="radio">
-            <h3>Cash on Delivery </h3><input type="radio" name="payment_method" value="cash_on_delivery" required>
+            <h3><i class="fas fa-money-bill-alt" style="font-size: 20px;"></i>  Cash on Delivery </h3><input type="radio" name="payment_method" value="cash_on_delivery" required>
         </div>
 
         <div id="my-data" json-data="{{json_data}}"></div>

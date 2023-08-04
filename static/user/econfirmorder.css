@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
 }
-
 nav{
     background-color: #207de7;
     display: flex;
@@ -22,6 +21,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;

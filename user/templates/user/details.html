@@ -7,6 +7,9 @@ Details
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
     * {
         padding: 0;
@@ -34,12 +37,16 @@ Details
     nav a {
         font-size: medium;
         font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
 
     a {
         text-decoration: none;
         color: black;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        
     }
 
     .photo {
@@ -58,6 +65,8 @@ Details
     }
 
     .buttons {
+        display: flex;
+        flex-direction: row;
         justify-content: flex-start;
         margin-top: 10px;
     }
@@ -68,11 +77,16 @@ Details
         height: 35px;
         border-radius: 10px;
         padding: 5px;
+        padding-top: 6px;
         border: none;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-size: medium;
         font-weight: bold;
         cursor: pointer;
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-right: 10px;
     }
 
     .btn:hover {
@@ -172,20 +186,20 @@ Details
 {% endblock header %}
 {% block body %}
 <nav onload="location.reload()">
-    <a href="/">Back</a>
+    <a href="/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
     {% if request.user.is_authenticated %}
     <a href="/profile/">
-        <h4>Hey {{request.user}}</h4>
+        <h4><i class="fas fa-user" style="font-size: 20px;"></i>  Hey {{request.user}}</h4>
     </a>
     {% endif %}
 
-    <a href="/user/cart/">My cart</a>
+    <a href="/user/cart/"><i class="fas fa-shopping-cart" style="font-size: 20px;"></i>  My cart</a>
 
     {% if request.user.is_authenticated %}
 
-    <a href="/logout">logout</a>
+    <a href="/logout"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>  logout</a>
     {% else %}
-    <a href="/login/">Login</a>
+    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>  login</a>
     {% endif %}
 </nav>
 {{alert}}
@@ -204,9 +218,9 @@ Details
             {% csrf_token %}
             <div style="opacity: 0.3;" class="buttons">
                 {% if already %}
-                <button class="disabled" disabled>Add to cart</button>
+                <button class="disabled" disabled><i class='fas fa-cart-plus' style='font-size:20px'></i>  Add to cart</button>
                 {% else %}
-                <button class="disabled" disabled>Add to cart</button>
+                <button class="disabled" disabled><i class='fas fa-cart-plus' style='font-size:20px'></i>  Add to cart</button>
                 {% endif %}
         </form>
         <button class="disabled" type="button" disabled>Buy Now</button>
@@ -232,9 +246,9 @@ Details
         {% csrf_token %}
         <div class="buttons">
             {% if already %}
-            <button class="btn" id="disabled" disabled>Add to cart</button>
+            <button class="btn" id="disabled" disabled><i class='fas fa-cart-plus' style='font-size:20px'></i>  Add to cart</button>
             {% else %}
-            <button type="submit" id="inputbtn" class="btn">Add to cart</button>
+            <button type="submit" id="inputbtn" class="btn"><i class='fas fa-cart-plus' style='font-size:20px'></i>  Add to cart</button>
             {% endif %}
     </form>
     <a href="/user/buynow/1/{{item.id}}"><button class="btn" type="button">Buy Now</button></a>
@@ -254,7 +268,7 @@ Details
             }
             setTimeout(function () {
                 form.submit();
-            }, 3000);
+            }, 2000);
         });
     });
     document.addEventListener("DOMContentLoaded", function () {
