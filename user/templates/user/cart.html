@@ -3,7 +3,7 @@
 My cart
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/user/cart.css">
+<link rel="stylesheet" href="/static/user/ecart.css">
 {% endblock style %}
 
 {% block header %}
@@ -32,7 +32,7 @@ My cart
     <div class="eachitem">
 
         <a href="/user/details/{{cart.item}}">
-            <img src="/uploads/{{cart.item}}" alt="">
+            <img src="/static/person.png" alt="">
         </a>
         <a class="name" href="/user/details/{{cart.item}}">
             <h3>{{cart.item}}</h3>
