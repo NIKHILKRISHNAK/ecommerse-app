@@ -1,6 +1,7 @@
-body{
-    background-image: linear-gradient(#207de7,white);
+body {
+    background-image: linear-gradient(#207de7, white);
 }
+
 .container {
     width: 100%;
     height: 100vh;
@@ -61,12 +62,15 @@ img {
     transition: all 1s ease-out;
 
 }
-.second{
-position: relative;
-animation: rising 2s ease;
-transition: all 1s ease-out;
+
+.second {
+    text-align: center;
+    position: relative;
+    animation: rising 2s ease;
+    transition: all 1s ease-out;
 
 }
+
 @keyframes travel {
     0% {
         left: 0px;
@@ -88,7 +92,7 @@ transition: all 1s ease-out;
         left: 450px;
         opacity: 0;
         visibility: hidden;
-        
+
     }
 }
 
@@ -104,27 +108,33 @@ transition: all 1s ease-out;
         visibility: hidden;
     }
 }
-@keyframes rising{
-   0%{
-    bottom:-100px;
-    opacity: 0;
-   }
-   95%{
-    opacity: 0.001;
-   }
-   100%{
-    bottom:0px;
-    opacity: 1;
-   }
+
+@keyframes rising {
+    0% {
+        bottom: -100px;
+        opacity: 0;
+    }
+
+    95% {
+        opacity: 0.001;
+    }
+
+    100% {
+        bottom: 0px;
+        opacity: 1;
+    }
 }
-@keyframes rotate{
-    0%{
+
+@keyframes rotate {
+    0% {
         transform: rotate(0deg);
     }
-    50%{
+
+    50% {
         transform: rotate(-30deg);
     }
-    100%{
+
+    100% {
         transform: rotate(30deg);
     }
 }
