@@ -3,20 +3,21 @@
 
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/user/eorderdetails.css">
+<link rel="stylesheet" href="/static/user/orderdetails.css">
 {% endblock style %}
 
 {% block header %}
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock header %}
 {% block body %}
 <nav>
-    <a href="/user/orders/">Back</a>
+    <a href="/user/orders/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
     <h1>Order details</h1>
     {% if request.user.is_authenticated %}
-    <a href="/logout">Logout</a>
+    <a href="/logout"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>  logout</a>
     {% else %}
-    <a href="/login"> Login</a>
+    <a href="/login"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> login</a>
     {% endif %}
 </nav>
 <div class="nonnav">
@@ -30,7 +31,7 @@
         <h4> Price : ₹{{item.item.price}}</h4>
         <h4>Ordered on: {{item.date}}</h4>
         <h3>Status :{{item.order_status}}</h3>
-        <button onclick="check()">Cancel</button>
+        <button onclick="check()"><i class="fas fa-times" style="font-size: 20px;"></i>  Cancel Order</button>
     </div>
 </div>
 <script>

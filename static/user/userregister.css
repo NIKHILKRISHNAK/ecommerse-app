@@ -22,6 +22,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;
@@ -37,6 +40,9 @@ input{
     width: 25%;
     height: 25px;
     margin: 10px;
+}
+form{
+    margin-top: 20px;
 }
 input:focus{
     outline: 1px solid #207de7;

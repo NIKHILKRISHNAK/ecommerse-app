@@ -3,18 +3,21 @@
 Login
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/common/login.css">
+<link rel="stylesheet" href="/static/common/elogin.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-    <a style="cursor: pointer;" onclick="history.back()">Back</a>
-    <h1>Login</h1>
+    <a style="cursor: pointer;" onclick="history.back()"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
+    <h1><i class="fas fa-sign-in-alt"></i>  Login</h1>
 </nav>
 <div class="nonnav">
+    
     <form method="POST">
         {% csrf_token %}
         <h3>Username:</h3>{{form.username}}
@@ -22,6 +25,6 @@ Login
         <br>
         <input type="submit" value="Login">
     </form>
-    <label for="a">Don't have an account </label><a class="signup" href="/user/userregister/">Sign Up</a>
+    <label for="a">Don't have an account ?</label><a class="signup" href="/user/userregister/">Sign Up</a>
 </div>
 {% endblock body %}

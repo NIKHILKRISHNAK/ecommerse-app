@@ -22,6 +22,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;
@@ -44,16 +47,20 @@ a{
 }
 button{
     background-color: #207de7;
-    width:80px;
+    width:fit-content;
     height: 35px;
     border-radius: 10px;
     padding: 5px;
+    padding-top: 7px;
     border: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: medium;
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 button:hover{
     color: #207de7;

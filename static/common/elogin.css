@@ -22,6 +22,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;

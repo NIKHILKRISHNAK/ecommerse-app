@@ -18,13 +18,14 @@
 nav{
     background-color: #207de7;
     display: flex;
+    flex-direction: row;
     text-align: center;
     justify-content: space-between;
     align-items: center;
     margin-top:0px;
-    height: 50px;
-    padding: 5px;
+    height: 55px;
     width: 100%;
+    
 }
 nav a:hover{
     color: white;
@@ -32,6 +33,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;

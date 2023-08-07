@@ -8,7 +8,6 @@ import json
 from seller.models import Orders
 from django.http import HttpResponse
 
-@login_required
 def UserRegister(request):
     if request.POST:
         form=UserRegisterForm(request.POST)
