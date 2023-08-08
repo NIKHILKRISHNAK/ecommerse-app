@@ -38,6 +38,10 @@ def items(request):
 @staff_member_required
 def details(request,id):
     item=Items.objects.get(id=id)
+    print(item.count)
+    if (item.count)==0:
+        no="zero"
+        return render(request,'seller/details.html',{'item':item,'no':no})
     return render(request,'seller/details.html',{'item':item})
 
 @staff_member_required

@@ -3,25 +3,27 @@
 Items
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/seller/eitems.css">
+<link rel="stylesheet" href="/static/seller/items.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-    <a href="/seller/">Back</a>
+    <a href="/seller/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
 
     {% if request.user.is_authenticated %}
-    <a href="/profile/"><h4>Hey {{request.user}}</h4></a>
+    <a href="/profile/"><h4><i class="fas fa-user" style="font-size: 20px;"></i>  Hey {{request.user}}</h4></a>
     {% endif %}
 
-    <a href="/seller/createitem/"> Create new item</a>
+    <a href="/seller/createitem/"><i class="fas fa-plus-circle" style="font-size: 20px;"></i>  Create new item</a>
     {% if request.user.is_authenticated %}
-    <a href="/logout">logout</a> 
+    <a href="/logout"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>  logout</a> 
     {% else %}
-    <a href="/login/">Login</a>
+    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>  login</a>
     {% endif %}
 </nav>
 <div class="nonnav">

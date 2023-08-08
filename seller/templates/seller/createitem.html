@@ -3,23 +3,25 @@
 Create Item
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/seller/ecreateitem.css">
+<link rel="stylesheet" href="/static/seller/createitem.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-    <a href="/seller/items/">Back</a>
+    <a href="/seller/items/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
     {% if request.user.is_authenticated %}
-    <h4>Hey {{request.user}}</h4>
+    <a href="/profile/"><h4><i class="fas fa-user" style="font-size: 20px;"></i>  Hey {{request.user}}</h4></a>
     {% endif %}
-    <h1 style="color: white;">Create Item</h1>
+    <h1><i class="fas fa-plus-circle" style="font-size: 20px;"></i>  Create Item</h1>
     {% if request.user.is_authenticated %}
-    <a href="/logout">logout</a>
+    <a href="/logout"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>  logout</a>
     {% else %}
-    <a href="/login/">Login</a>
+    <a href="/login/"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>  login</a>
     {% endif %}
 </nav>
 <div class="nonnav">
@@ -38,7 +40,7 @@ Create Item
 
         <h4>Count:</h4><input type="number" name="count" value="1" required>
         <h4>Added By:</h4><input class="readonly" type="text" name="added_by" value="{{request.user}}" readonly required><br>
-        <input type="submit" value="Save">
+        <button type="submit"><i class="fas fa-save" style="font-size: 20px;"></i>  Save</button>
     </form>
 </div>
 {% endblock body %}

@@ -14,6 +14,7 @@ nav{
     padding: 5px;
     position: sticky;
     top:0;
+    z-index: 9999;
 }
 nav a:hover{
     color: white;
@@ -21,6 +22,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;
@@ -34,9 +38,12 @@ a{
 }
 .items{
     padding: 10px;
-    display: grid;
+    /* display: grid;
     grid: 200px / auto auto auto;
-    grid-gap: 10px;
+    grid-gap: 10px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     padding:10px;
     justify-content: space-around ;
 }

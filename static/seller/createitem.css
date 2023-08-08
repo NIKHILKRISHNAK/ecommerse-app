@@ -23,6 +23,9 @@ nav a:hover {
 nav a {
     font-size: medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 a {
@@ -82,7 +85,7 @@ input[type="file"] {
 input[type="file"]:hover{
     cursor: pointer;
 }
-input[type="submit"] {
+button {
     background-color: #207de7;
     width: 70px;
     height: 27px;
@@ -105,7 +108,7 @@ select:focus{
 .readonly{
     cursor: auto;
 }
-input[type="submit"]:hover{
+button:hover{
     background-color: white;
     color: #207de7;
 }

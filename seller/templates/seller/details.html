@@ -3,28 +3,30 @@
 Details
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/seller/edetails.css">
+<link rel="stylesheet" href="/static/seller/details.css">
 {% endblock style %}
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 
 {% block body %}
 <nav>
-    <a href="/seller/items/">Back</a>
+    <a href="/seller/items/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
 
     {% if request.user.is_authenticated %}
     <a href="/profile/">
-        <h4>Hey {{request.user}}</h4>
+        <h4><i class="fas fa-user" style="font-size: 20px;"></i>  Hey {{request.user}}</h4>
     </a>
     {% endif %}
 
-    <a style="cursor: pointer;" onclick="choice()">delete</a>
-    <a href="/seller/update/{{item.id}}">Update</a>
+    <a style="cursor: pointer;" onclick="choice()"><i class="fas fa-trash" style="font-size: 20px;"></i>  Delete</a>
+    <a href="/seller/update/{{item.id}}"><i class="fas fa-sync" style="font-size: 20px;"></i>Update</a>
     {% if request.user.is_authenticated %}
-    <a href="/logout">logout</a>
+    <a href="/logout"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i> logout</a>
     {% else %}
-    <a href="/login/">Login</a>
+    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>login</a>
     {% endif %}
 </nav>
 <div class="photo">
@@ -34,7 +36,11 @@ Details
     <h1>{{item.name}}</h1>
     <h3>{{item.description}}</h3>
     <h2>₹ {{item.price}}</h2>
-    <h4>Available stock:{{item.count}}</h4>
+    {% if no %}
+    <h2 style="color: red;">Out of Stoke</h2>
+    {% else %}
+    <h2 style="color: green;">Available stock:{{item.count}}</h2>
+    {% endif %}
 </div>
 <script>
     function choice(){
