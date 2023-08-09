@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
-<link rel="stylesheet" href="/static/alanding.css">
+<link rel="stylesheet" href="/static/landing.css">
 {% endblock style %}
 
 {% block title %}
@@ -13,7 +13,6 @@ Landing page
 
 {% endblock header %}
 {% block body %}
-
 <div id="intro" class="intro" style="display: none;">
     <img class="introimg" src="/static/introimage.png" alt="">
     <h1>welcome</h1><br>
@@ -45,9 +44,11 @@ Landing page
     <a class="navitem" href="/login/"><i class="fa fa-sign-in" style="font-size:20px"></i> login</a>
     {% endif %}
 </nav>
-<div class="banner">
-    <img class="bannerimg" src="/uploads/{{random.image}}" alt="">
-</div>
+<a href="/user/details/{{random.id}}">
+    <div class="banner">
+        <img class="bannerimg" src="/uploads/{{random.image}}" alt="">
+    </div>
+</a>
 <div class="container">
     {% for item in items %}
     <a href="/user/details/{{item.id}}">

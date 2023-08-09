@@ -64,9 +64,9 @@ a {
     text-decoration: none;
     color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: center; */
     padding: 5px;
 }
 #profile {
@@ -115,11 +115,11 @@ a {
     object-fit: contain;
 }
 .banner{
-    background-color: black;
+    background-color: #95b6ff85;
     margin-left: 20px;
     margin-right: 20px;
     margin-top:20px;
-    border: 2px solid #207de7;
+    border: 2px solid #95b6ff85;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -129,7 +129,7 @@ a {
     width: 45%;
     aspect-ratio: 3/2;
     object-fit: contain;
-    mix-blend-mode: none;
+    mix-blend-mode: normal;
 }
 @keyframes loading {
 
