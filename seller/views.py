@@ -46,7 +46,7 @@ def details(request,id):
 
 @staff_member_required
 def create_item(request):
-    category_list=['Bags','Laptops','Mobile Phones','Kids','Electronics','School & Accessories','MakeUp','Outit']
+    category_list=['Bags','Laptops','Mobile Phones','Kids','Electronics','School & Accessories','MakeUp','Outit','Watch']
     if request.method == 'POST':
         name=request.POST['name']
         description=request.POST['description']
