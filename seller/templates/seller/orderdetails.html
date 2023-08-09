@@ -3,20 +3,22 @@
 Order details
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/seller/orderdetails.css">
+<link rel="stylesheet" href="/static/seller/eorderdetails.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-<a href="/seller/orders/">Back</a>
-<h1>Order details</h1>
+<a href="/seller/orders/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i>  Back</a>
+<h1><i class="fas fa-info-circle" style="font-size: 20px;"></i>  Order details</h1>
 {% if request.user.is_authenticated %}
-<a href="/logout/">logout</a>
+<a href="/logout/"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>  logout</a>
 {% else %}
-<a href="/login/">login</a>
+<a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>login</a>
 {% endif %}
 </nav>
 <div class="nonnav">
@@ -40,7 +42,7 @@ Order details
 <h3>Status: {{form.order_status}}</h3>
 <div class="btn">
     
-    <button type="submit">Save</button>
+    <button type="submit"><i class="fas fa-save" style="font-size: 20px;"></i>  Save</button>
     </div>
 </form>
 

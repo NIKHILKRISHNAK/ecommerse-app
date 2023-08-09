@@ -21,6 +21,9 @@ nav a:hover{
 nav a{
     font-size:medium;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 a{
     text-decoration: none;
@@ -48,7 +51,7 @@ h1,h2,h3{
 button{
     background-color: #207de7;
     border: 1px solid #207de7;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
     cursor: pointer;
 }

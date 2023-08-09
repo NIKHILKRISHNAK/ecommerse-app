@@ -3,30 +3,36 @@
 Orders
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="/static/seller/orders.css">
+<link rel="stylesheet" href="/static/seller/eorders.css">
 {% endblock style %}
 
 {% block header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
-    <a href="/seller/">Back</a>
-    <h1>Orders</h1>
+    <a href="/seller/"><i class="fas fa-arrow-left" style="font-size: 20px;"></i> Back</a>
+    <h1><i class="fas fa-clipboard-list" style="font-size: 20px;"></i>Orders</h1>
     {% if request.user.is_authenticated %}
-    <a href="/logout/">logout</a>
+    <a href="/logout/"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i> logout</a>
     {% else %}
-    <a href="/login/">login</a>
+    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> login</a>
     {% endif %}
 </nav>
 {% if message %}
 <div class="mess">
-<h1 class="messsage">{{message}}</h1>
+    <h1 class="messsage">{{message}}</h1>
 </div>
 {% endif %}
 {% for order in orders %}
 <a href="/seller/orderdetails/{{order.id}}">
-    <div class="eachitem"> {{order.item}}
+    <div class="eachitem">
+        <div class="imgnname">
+            <img src="/uploads/{{order.item.image}}" alt="">
+            {{order.item}}
+        </div>
         <h4>Purchaser:{{order.ordered_by}}</h4>
         <h4>Order Status:{{order.order_status}}</h4>
         <h4>Date:{{order.date}}</h4>

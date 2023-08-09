@@ -9,30 +9,31 @@ Seller Landing
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
 <nav>
     {% if request.user.is_authenticated %}
     <a href="/profile/">
-        <h4 style="cursor: pointer"><i class="fas fa-user" style="font-size: 20px;"></i>  Hey {{request.user}}</h4>
+        <h4><i class="fas fa-user-cog" style="font-size: 20px;"></i> Hey {{request.user}}</h4>
     </a>
     {% endif %}
     <a href="/seller/items/">
-        <i class="fas fa-list" style="font-size: 20px;"></i>  All Items
+        <i class="fas fa-list" style="font-size: 20px;"></i> All Items
     </a>
     {% if request.user.is_superuser %}
     <a href="/seller/create-seller/">
-        <i class="fas fa-user-plus" style="font-size: 20px;"></i>  Create new Seller
+        <i class="fas fa-user-plus" style="font-size: 20px;"></i> Create new Seller
     </a>
     {% endif %}
-    <a href="/seller/orders/"><i class="fas fa-clipboard-list" style="font-size: 20px;"></i>  All Orders</a>
-    <a href="/"><i class="fas fa-external-link-alt" style="font-size: 20px;"></i>  Go as User</a>
+    <a href="/seller/orders/"><i class="fas fa-clipboard-list" style="font-size: 20px;"></i> All Orders</a>
+    <a href="/"><i class="fas fa-external-link-alt" style="font-size: 20px;"></i> Go as User</a>
     {% if request.user.is_authenticated %}
-    <a href="/logout"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>  logout</a>
+    <a href="/logout"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i> logout</a>
     {% else %}
-    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>  login</a>
+    <a href="/login/"><i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> login</a>
     {% endif %}
 </nav>
 <div class="under">
@@ -40,7 +41,7 @@ Seller Landing
 <div id="JsonData" json-data="{{JsonData}}"></div>
 <div class="charts">
     <div class="multi">
-        <a href="/seller/items/"><canvas id="myChart1"></canvas></a>
+        <canvas id="myChart1"></canvas>
     </div>
     <div class="mono">
         <a href="/seller/orders/"><canvas id="myChart2"></canvas></a>
@@ -72,7 +73,7 @@ Seller Landing
                 data: JsonData.ItemsNumber,
                 borderWidth: 1,
                 backgroundColor: '#58a6ff',
-                borderColor:'#468ddf',
+                borderColor: '#468ddf',
             }]
         },
         options: {
@@ -95,7 +96,7 @@ Seller Landing
                 data: [(JsonData.OrdersName).length],
                 borderWidth: 1,
                 backgroundColor: 'white',
-                borderColor:'#468ddf',
+                borderColor: '#468ddf',
                 width: 10,
                 barThickness: 40
             }]

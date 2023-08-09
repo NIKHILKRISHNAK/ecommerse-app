@@ -3,11 +3,19 @@ from seller.models import Items
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from user.models import Purchaser
+import random
 def landing(request):
+    image=[]
     items=Items.objects.all()
+    print(items)
+    for item in items:
+        image.append(item)
+    print(image)
+    random_image=random.choice(image)
+    print(random_image)
     # show_intro=not request.session.get('intro_shown',False)
     # request.session['intro_shown']=True
-    return render(request,'landing.html',{'items':items})
+    return render(request,'landing.html',{'items':items,'random':random_image})
 @login_required
 def profile(request):
     user=User.objects.get(username=request.user)

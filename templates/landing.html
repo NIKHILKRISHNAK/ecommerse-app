@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
-<link rel="stylesheet" href="/static/elanding.css">
+<link rel="stylesheet" href="/static/alanding.css">
 {% endblock style %}
 
 {% block title %}
@@ -8,7 +8,8 @@ Landing page
 {% endblock title %}
 {% block header %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-...." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endblock header %}
 {% block body %}
@@ -22,8 +23,15 @@ Landing page
 </div>
 <nav>
     {% if request.user.is_authenticated %}
-    <a id="profile" class="navitem" href="/profile/"><i class="fas fa-user" style="font-size:20px"></i>Hey
-        {{request.user}}</a>
+    {% if request.user.is_staff %}
+    <a id="profile" class="navitem" href="/profile/"><i class="fas fa-user-cog" style="font-size:20px"></i>
+        <h4>Hey {{request.user}}</h4>
+    </a>
+    {% elif request.user.is_active and not request.user.is_superuser %}
+    <a id="profile" class="navitem" href="/profile/"><i class="fas fa-user" style="font-size:20px"></i>
+        <h4>Hey {{request.user}}</h4>
+    </a>
+    {% endif %}
     {% endif %}
 
     {% if request.user.is_staff %}
@@ -31,12 +39,15 @@ Landing page
     {% endif %}
     <h3>Ecommerse app</h3>
     {% if request.user.is_authenticated %}
-    <a class="navitem" href="/user/cart/" ><i class="fa fa-shopping-cart" style="font-size:20px"></i>  My cart</a>
-    <a class="navitem" href="/logout" ><i class="fas fa-sign-out-alt" style="font-size:20px"></i>  logout</a>
+    <a class="navitem" href="/user/cart/"><i class="fa fa-shopping-cart" style="font-size:20px"></i> My cart</a>
+    <a class="navitem" href="/logout"><i class="fas fa-sign-out-alt" style="font-size:20px"></i> logout</a>
     {% else %}
-    <a class="navitem" href="/login/"><i class="fa fa-sign-in" style="font-size:20px"></i>  login</a>
+    <a class="navitem" href="/login/"><i class="fa fa-sign-in" style="font-size:20px"></i> login</a>
     {% endif %}
 </nav>
+<div class="banner">
+    <img class="bannerimg" src="/uploads/{{random.image}}" alt="">
+</div>
 <div class="container">
     {% for item in items %}
     <a href="/user/details/{{item.id}}">
@@ -48,14 +59,14 @@ Landing page
     {% endfor %}
 </div>
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
-      if (!sessionStorage.getItem("introShown")) {
-        var introDiv = document.getElementById("intro");
-        if (introDiv) {
-          introDiv.style.display = "flex";
+    document.addEventListener("DOMContentLoaded", function () {
+        if (!sessionStorage.getItem("introShown")) {
+            var introDiv = document.getElementById("intro");
+            if (introDiv) {
+                introDiv.style.display = "flex";
+            }
+            sessionStorage.setItem("introShown", "true");
         }
-        sessionStorage.setItem("introShown", "true");
-      }
     });
 
 </script>
