@@ -7,12 +7,9 @@ import random
 def landing(request):
     image=[]
     items=Items.objects.all()
-    print(items)
     for item in items:
         image.append(item)
-    print(image)
     random_image=random.choice(image)
-    print(random_image)
     # show_intro=not request.session.get('intro_shown',False)
     # request.session['intro_shown']=True
     return render(request,'landing.html',{'items':items,'random':random_image})
