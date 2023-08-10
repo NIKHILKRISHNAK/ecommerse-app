@@ -4,7 +4,7 @@
 {% endblock style %}
 
 {% block title %}
-Landing page
+TrendHaven Home
 {% endblock title %}
 {% block header %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,8 +14,7 @@ Landing page
 {% endblock header %}
 {% block body %}
 <div id="intro" class="intro" style="display: none;">
-    <img class="introimg" src="/static/introimage.png" alt="">
-    <h1>welcome</h1><br>
+    <img class="introimg" src="/static/TrendHaven_icon.png" alt="">
     <div class="loading">
         <span> .</span>
     </div>
@@ -36,7 +35,7 @@ Landing page
     {% if request.user.is_staff %}
     <a class="navitem" href="/seller/"><i class="fas fa-store-alt" style="font-size:20px"></i> Go to seller account</a>
     {% endif %}
-    <h3>Ecommerse app</h3>
+    <h3>TrendHaven</h3>
     {% if request.user.is_authenticated %}
     <a class="navitem" href="/user/cart/"><i class="fa fa-shopping-cart" style="font-size:20px"></i> My cart</a>
     <a class="navitem" href="/logout"><i class="fas fa-sign-out-alt" style="font-size:20px"></i> logout</a>
@@ -44,11 +43,14 @@ Landing page
     <a class="navitem" href="/login/"><i class="fa fa-sign-in" style="font-size:20px"></i> login</a>
     {% endif %}
 </nav>
-<a href="/user/details/{{random.id}}">
-    <div class="banner">
-        <img class="bannerimg" src="/uploads/{{random.image}}" alt="">
-    </div>
-</a>
+<div class="banner">
+    <!-- <img class="bannerimg" src="/uploads/{{random.image}}" alt=""> -->
+    {% for image in images %}
+    <a href="/user/details/{{image.id}}">
+        <img class="bannerimg" src="/uploads/{{image.image}}" alt="">
+    </a>
+    {% endfor %}
+</div>
 <div class="container">
     {% for item in items %}
     <a href="/user/details/{{item.id}}">

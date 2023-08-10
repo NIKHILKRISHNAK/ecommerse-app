@@ -12,7 +12,7 @@ def landing(request):
     random_image=random.choice(image)
     # show_intro=not request.session.get('intro_shown',False)
     # request.session['intro_shown']=True
-    return render(request,'landing.html',{'items':items,'random':random_image})
+    return render(request,'landing.html',{'items':items,'random':random_image,'images':image})
 @login_required
 def profile(request):
     user=User.objects.get(username=request.user)
